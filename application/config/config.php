@@ -26,8 +26,8 @@ date_default_timezone_set('America/Tijuana');
 |
 */
 
-	$config['base_url'] = 'http://localhost/pointmedicalvideos/';
-
+	//$config['base_url'] = 'http://localhost/pointmedicalvideos/';
+	$config['base_url'] = 'http://mxmtsvrandon1/pointmedicalvideos/';
 /*
 |--------------------------------------------------------------------------
 | Index File

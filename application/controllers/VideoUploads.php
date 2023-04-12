@@ -71,14 +71,17 @@ class VideoUploads extends MY_Controller
 				//compress video with ffmpeg
 				$video_path = './assets/uploads/' . $post_image;
 				$compressed_video_path = './assets/uploads/compressed/' . $post_image;
-				$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -vcodec libx264 -crf 23 -preset medium $compressed_video_path";
+				#$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -vcodec libx264 -crf 23 -preset medium $compressed_video_path";
+				$command = "c:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -vcodec libx264 -crf 23 -preset medium $compressed_video_path";
+
 				shell_exec($command);
 
 
 
 				//create thumbnail
 				$thumbnail_path = './assets/uploads/screenshots/' . $post_image . '.jpg';
-				$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -ss 00:00:01.000 -vframes 1 $thumbnail_path";
+				//$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -ss 00:00:01.000 -vframes 1 $thumbnail_path";
+				$command = "c:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -ss 00:00:01.000 -vframes 1 $thumbnail_path";
 				shell_exec($command);
 
 
@@ -167,14 +170,14 @@ class VideoUploads extends MY_Controller
 					//compress video with ffmpeg
 					$video_path = './assets/uploads/' . $post_image;
 					$compressed_video_path = './assets/uploads/compressed/' . $post_image;
-					$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -vcodec libx264 -crf 23 -preset medium $compressed_video_path";
+					$command = "c:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -vcodec libx264 -crf 23 -preset medium $compressed_video_path";
 					shell_exec($command);
 
 
 
 					//create thumbnail
 					$thumbnail_path = './assets/uploads/screenshots/' . $post_image . '.jpg';
-					$command = "d:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -ss 00:00:01.000 -vframes 1 $thumbnail_path";
+					$command = "c:/xampp/htdocs/pointmedicalvideos/assets/uploads/ffmpeg/bin/ffmpeg.exe -i $video_path -ss 00:00:01.000 -vframes 1 $thumbnail_path";
 					shell_exec($command);
 
 

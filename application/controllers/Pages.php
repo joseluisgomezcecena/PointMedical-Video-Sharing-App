@@ -4,27 +4,85 @@ class Pages extends CI_Controller
 {
 	public function view($page = 'home')
 	{
+
 		if(!file_exists(APPPATH . 'views/pages/' . $page . '.php'))
 		{
 			show_404();
 		}
 
-		$limit = 10;
-
-		$data['title'] = "🎥 Point Medical | Reference Videos.";
-		$data['categories'] = $this->CategoryModel->get_videocategories();
-		$data['videos'] = $this->VideoModel->get_videos();
-		$data['recents'] = $this->VideoModel->get_recent($limit);
+		$data['title'] = "Avanti Manufacturing - " . ucfirst($page);
+		$data['products'] = $this->ProductModel->get_all_products();
+		//$data['orders'] = $this->OrderModel->get_orders_by_session();
 
 		//load header, page & footer
-		$this->load->view('templates/main/header',$data);
-		$this->load->view('templates/main/topnav');
-		$this->load->view('templates/main/sidebar', $data);
-		$this->load->view('templates/main/wrapper');
-		$this->load->view('pages/' . $page, $data); //loading page and data
-		$this->load->view('templates/main/footer_wide');
-
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/' . $page, $data);
+		$this->load->view('templates/footer');
 	}
+
+
+
+	public function details($id)
+	{
+		$data['title'] = 'Product Details';
+		$data['product'] = $this->ProductModel->get_product($id);
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/details', $data);
+		$this->load->view('templates/footer');
+	}
+
+
+
+	public function order_confirmation($id)
+	{
+		//check if user is logged in
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->session->set_flashdata('errors', 'You must be logged in to place an order.');
+			redirect(base_url() . 'users/login');
+		}
+
+		$data['order'] = $this->OrderModel->get_order($id);
+		$data['order_items'] = $this->OrderModel->get_order_items($id);
+
+		$data['title'] = 'Order Confirmation';
+		$data['product'] = $this->ProductModel->get_product($id);
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/confirmation', $data);
+		$this->load->view('templates/footer');
+	}
+
+
+
+	public function order($id)
+	{
+		//check if user is logged in
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->session->set_flashdata('errors', 'You must be logged in to place an order.');
+			redirect(base_url() . 'users/login');
+		}
+
+
+		$data['order'] = $this->OrderModel->get_orders_by_session($id);
+
+		if ($data['order'] == NULL)
+		{
+			show_404();
+		}
+
+		$data['order_items'] = $this->OrderModel->get_order_items($id);
+
+		$data['title'] = 'Order Confirmation';
+		$data['product'] = $this->ProductModel->get_product($id);
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/order', $data);
+		$this->load->view('templates/footer');
+	}
+
 
 
 }

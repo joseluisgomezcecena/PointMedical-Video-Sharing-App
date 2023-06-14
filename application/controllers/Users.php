@@ -1,12 +1,11 @@
 <?php
-class Users extends MY_Controller
+class Users extends CI_Controller
 {
 
 	public function index()
 	{
 		//show all users
-		$data['title'] = '🎥 Users | Point Medical Reference Videos.';
-		$data['categories'] = $this->CategoryModel->get_videocategories();
+		$data['title'] = 'Avanti | Users.';
 		$data['users'] = $this->UserModel->get_users();
 
 
@@ -24,13 +23,15 @@ class Users extends MY_Controller
 	public function register()
 	{
 		$data['title'] = 'Register users';
-		$data['categories'] = $this->CategoryModel->get_videocategories();
 
 
 		$this->form_validation->set_rules('user_name', 'User Name', 'required|callback_check_username_exists');
-		$this->form_validation->set_rules('user_email', 'Email', 'required|callback_check_email_exists');
-		$this->form_validation->set_rules('user_password', 'Password', 'required');
-		$this->form_validation->set_rules('user_password2', 'Confirm Password', 'matches[user_password]');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+		$this->form_validation->set_rules('phone', 'Confirm Password', 'required|callback_check_phone_exists');
+		$this->form_validation->set_rules('company', 'Company Name', 'required');
+
 
 
 
@@ -56,13 +57,10 @@ class Users extends MY_Controller
 			//Encrypt password
 			$encrypted_pwd = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
-
-
 			$this->UserModel->register($encrypted_pwd);
 
-
 			//session message
-			$this->session->set_flashdata('message', 'User was successfully registered..');
+			$this->session->set_flashdata('message', 'User was successfully registered...');
 
 			redirect(base_url() . 'users/register');
 		}
@@ -74,15 +72,16 @@ class Users extends MY_Controller
 
 	public function edit($id)
 	{
-		$data['title'] = 'Edit User';
-		$data['categories'] = $this->CategoryModel->get_videocategories();
+		$data['title'] = 'Edit/Update User';
 		$data['user'] = $this->UserModel->get_user($id);
 
 
 		$this->form_validation->set_rules('user_name', 'User Name', 'required|callback_check_username_exists_update['.$id.']');
-		$this->form_validation->set_rules('user_email', 'Email', 'required|callback_check_email_exists_update['.$id.']');
-		$this->form_validation->set_rules('user_password', 'Password', 'required');
-		$this->form_validation->set_rules('user_password2', 'Confirm Password', 'matches[user_password]');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists_update['.$id.']');
+		//$this->form_validation->set_rules('password', 'Password', 'required');
+		//$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+		$this->form_validation->set_rules('phone', 'Confirm Password', 'required|callback_check_phone_exists_update['.$id.']');
+		$this->form_validation->set_rules('company', 'Company Name', 'required');
 
 
 
@@ -106,15 +105,13 @@ class Users extends MY_Controller
 		else
 		{
 			//Encrypt password
-			$encrypted_pwd = password_hash($this->input->post('user_password'), PASSWORD_DEFAULT);
-
-
+			$encrypted_pwd = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 			$this->UserModel->edit($encrypted_pwd, $id);
 
-
 			//session message
-			$this->session->set_flashdata('message', 'User was successfully updated..');
+			$this->session->set_flashdata('message', 'User was successfully updated...');
+
 
 			redirect(base_url() . 'admin/users');
 		}
@@ -125,24 +122,26 @@ class Users extends MY_Controller
 
 
 
+
+
 	public function profile()
 	{
 		$id = $this->session->userdata['data']['user_id'];
 		$data['title'] = 'Edit Profile';
-		$data['categories'] = $this->CategoryModel->get_videocategories();
 		$data['user'] = $this->UserModel->get_user($id);
 
 
-
 		$this->form_validation->set_rules('user_name', 'User Name', 'required|callback_check_username_exists_update['.$id.']');
-		$this->form_validation->set_rules('user_email', 'Email', 'required|callback_check_email_exists_update['.$id.']');
-		$this->form_validation->set_rules('user_password', 'Password', 'required');
-		$this->form_validation->set_rules('user_password2', 'Confirm Password', 'matches[user_password]');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists_update['.$id.']');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+		$this->form_validation->set_rules('phone', 'Confirm Password', 'required|callback_check_phone_exists_update['.$id.']');
+		$this->form_validation->set_rules('company', 'Company Name', 'required');
+
 
 
 
 		$this->form_validation->set_error_delimiters(
-		//dissmissable alert
 			'<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>❌ Error: &nbsp;</strong>',
 			'<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>'
 		);
@@ -161,7 +160,7 @@ class Users extends MY_Controller
 		else
 		{
 			//Encrypt password
-			$encrypted_pwd = password_hash($this->input->post('user_password'), PASSWORD_DEFAULT);
+			$encrypted_pwd = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 
 
@@ -184,7 +183,6 @@ class Users extends MY_Controller
 	public function delete($id)
 	{
 		$data['title'] = 'Delete User';
-		$data['categories'] = $this->CategoryModel->get_videocategories();
 		$data['user'] = $this->UserModel->get_user($id);
 
 
@@ -299,7 +297,18 @@ class Users extends MY_Controller
 	}
 
 
+	function check_phone_exists_update($phone, $id)
+	{
+		$this->form_validation->set_message('check_phone_exists_update','That phone number is taken. Please choose a different one.');
 
-
+		if($this->UserModel->check_phone_exists_update($phone,$id))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }

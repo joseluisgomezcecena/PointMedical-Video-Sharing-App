@@ -1,81 +1,22 @@
-<div id="videoform" class="row">
-	<div class="col-lg-8">
-		<table id="data-table" class="table ">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-		        <?php foreach ($videos as $video): ?>
-				<tr>
-					<td>
-						<div class="card card-hover" style="width: 18rem;">
-							<a href="<?php echo base_url() ?>videos/<?php echo $video['video_id'] ?>">
-								<img class="card-img-top" src="<?php echo base_url() ?>assets/uploads/screenshots/<?php echo $video['screenshot_url'] ?>" alt="Card image cap">
-							</a>
-						</div>
-					</td>
-					<td>
-						<div class="mb-4">
-							<h4 class="card-title"><?php echo $video['video_title'] ?></h4>
-							<h5 style="margin-top: -15px;" class="card-text">
-								Document #: <b class="text-success"><?php echo $video['document_no'] ?></b>
-								<span class="float-right"><i class="anticon anticon-eye"></i> <?php echo $video['views'] ?></span>
-							</h5>
-							<p></p>
-
-							<p class="card-text">Uploaded:
-								<?php
-								//format date
-								$date = date_create($video['created_at']);
-								echo date_format($date, 'F d, Y');
-								echo " at ";
-								echo date_format($date, 'g:i A');
-								?>
-							</p>
-
-						</div>
-						<div>
-							<p class="card-text"><?php echo substr($video['video_description'], '0', 140) . "..."  ?></p>
-						</div>
-					</td>
-
-				</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div>
-	<div class="col-lg-4">
-		<div class="cards">
-			<div class="card-body">
-				<h4>Latest Videos</h4>
-				<div class="m-t-25">
-					<?php foreach ($recents as $recent): ?>
-					<a href="<?php echo base_url() ?>videos/<?php echo $recent['video_id'] ?>">
-					<div class="card card-hover" style="width: 18rem;">
-						<img class="card-img-top" src="<?php echo base_url() ?>assets/uploads/screenshots/<?php echo $recent['screenshot_url'] ?>" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title"><?php echo $recent['video_title'] ?></h5>
-							<h5 style="margin-top: -15px;" class="card-text">Document #: <b class="text-success"><?php echo $video['document_no'] ?></b></h5>
-							<small class="card-text">Uploaded:
-								<?php
-								//format date
-								$date = date_create($video['created_at']);
-								echo date_format($date, 'F d, Y');
-								echo " at ";
-								echo date_format($date, 'g:i A');
-								?>
-							</small>
-						</div>
-					</div>
-					</a>
-
-					<?php endforeach; ?>
-				</div>
-			</div>
+<section class="">
+	<div class="grid max-w-screen-xl px-4 py-4 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+		<div style="margin-top: 1px;" class="mr-auto place-self-center lg:col-span-7">
+			<h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">The highest quality on <span class="text-lime-500">Orthodontics & Dentistry</span> Devices</h1>
+			<p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Our device manufacturing services offer high-quality, high precision, customizable solutions for medical devices.</p>
+			<a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+				Go to Catalog
+				<svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+			</a>
+			<a href="#" class="inline-flex items-center bg-lime-400 justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-lime-500 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-lime-700 dark:focus:ring-gray-800">
+				Contact Sales
+			</a>
+		</div>
+		<div class=" lg:mt-0 lg:col-span-5 lg:flex">
+			<img src="<?php echo base_url() ?>assets/img2.jpg" class="animate__animated" data-animation="animate__fadeInRight" alt="">
 		</div>
 	</div>
-</div>
+</section>
+
+
+
 

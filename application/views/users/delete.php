@@ -6,7 +6,7 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-body">
-				<h4>Delete</h4>
+				<h4>Delete User.</h4>
 				<p class="text-danger">This user will be deleted.</p>
 
 				<?php echo validation_errors() ?>
@@ -34,7 +34,7 @@
 							</div>
 							<div class="col-lg-4">
 								<label>E-Mail</label>
-								<input type="email" class="form-control" name="user_email" placeholder="Email" value="<?php echo $user['user_email'] ?>" disabled>
+								<input type="email" class="form-control" name="user_email" placeholder="Email" value="<?php echo $user['email'] ?>" disabled>
 							</div>
 
 

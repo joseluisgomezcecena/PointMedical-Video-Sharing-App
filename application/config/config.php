@@ -26,8 +26,8 @@ date_default_timezone_set('America/Tijuana');
 |
 */
 
-	//$config['base_url'] = 'http://localhost/pointmedicalvideos/';
-	$config['base_url'] = 'http://mxmtsvrandon1/pointmedicalvideos/';
+	$config['base_url'] = 'http://localhost/avanti/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -142,8 +142,8 @@ $config['subclass_prefix'] = 'MY_';
 |	autoloading (application/config/autoload.php)
 */
 //$config['composer_autoload'] = FALSE;
-$config['composer_autoload'] = TRUE;
-//$config['composer_autoload'] = APPPATH . 'vendor/autoload.php';
+//$config['composer_autoload'] = TRUE;
+$config['composer_autoload'] = APPPATH . 'vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------

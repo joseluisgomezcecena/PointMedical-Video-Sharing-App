@@ -5,11 +5,9 @@ class Auth extends CI_Controller{
 
 	public function login()
 	{
+		$data['title'] = 'Avanti - Login';
 
-		$data['title'] = '🎥 Login | Point Medical Reference Videos.';
-		$data['page'] = 'login';
-
-		$this->form_validation->set_rules('username', 'User Name', 'required');
+		$this->form_validation->set_rules('email', 'User Name', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 
@@ -17,6 +15,7 @@ class Auth extends CI_Controller{
 			'<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>❌ Authentication Error: &nbsp;</strong>',
 			'<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>'
 		);
+
 
 		if($this->form_validation->run() === FALSE)
 		{
@@ -27,18 +26,18 @@ class Auth extends CI_Controller{
 		else
 		{
 			//Encrypt password
-			$username = $this->input->post('username');
+			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 
-			$data = $this->UserModel->login($username, $password);
+			$data = $this->UserModel->login($email, $password);
 
 			if($data)
 			{
 				//create session
 				$session_data = array(
 					'data'=>$data,
-					'user_name'=>$username,
+					'email'=>$email,
 					'logged_in'=>true,
 				);
 
@@ -73,6 +72,55 @@ class Auth extends CI_Controller{
 	}
 
 
+
+
+	public function forgot()
+	{
+		$data['title'] = 'Avanti - Forgot Password';
+
+		$this->form_validation->set_rules('email', 'Email', 'required');
+
+		$this->form_validation->set_error_delimiters(
+			'<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong> Error: &nbsp;</strong>',
+			'<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>'
+		);
+
+		if($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('templates/main/header',$data);
+			$this->load->view('auth/forgot', $data); //loading page and data
+			$this->load->view('templates/main/footer_wide');
+		}
+		else {
+			//Encrypt password
+			$email = $this->input->post('email');
+
+			$data = $this->UserModel->forgot_password_check($email);
+
+			if($data)
+			{
+				//create a random key with 10 digits.
+				$key = random_string('alnum', 10);
+				//encrypt the key.
+				$encrypted_pwd = password_hash($key, PASSWORD_DEFAULT);
+
+				//update the password in the database.
+				$this->UserModel->update_password($encrypted_pwd, $data['user_id']);
+
+				//send the email with the key.
+
+
+
+				$this->session->set_flashdata('message', "We sent an email with further instructions to restore your password.");
+			}
+			else
+			{
+				$this->session->set_flashdata('errors', "We couldn't find this email in our records, please try another email.");
+			}
+
+
+		}
+	}
 
 
 	public function get_user($id)

@@ -1,7 +1,7 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
-<?php echo form_open_multipart(base_url() . 'products/edit/' . $product['id']); ?>
+<?php echo form_open_multipart(base_url() . 'products/delete/' . $product['id']); ?>
 
 <div id="videoform" class="row">
 	<div class="col-lg-12">
@@ -26,17 +26,17 @@
 						<div class="row">
 							<div class="col-lg-3">
 								<label>Name</label>
-								<input type="text" class="form-control" name="name" placeholder="Product Name" value="<?php echo $product['name'] ?>" required>
+								<input type="text" class="form-control" name="name" placeholder="Product Name" value="<?php echo $product['name'] ?>" disabled>
 							</div>
 
 							<div class="col-lg-3">
 								<label>Product Number</label>
-								<input type="text" class="form-control" name="number" placeholder="Product Number" value="<?php echo $product['number'] ?>" required>
+								<input type="text" class="form-control" name="number" placeholder="Product Number" value="<?php echo $product['number'] ?>" disabled>
 							</div>
 
 							<div class="col-lg-3">
 								<label>Category</label>
-								<select class="form-control" name="category_id" id="category" required>
+								<select class="form-control" name="category_id" id="category" disabled>
 									<option value="">Select</option>
 									<?php foreach ($categories as $category) : ?>
 										<option <?php if ($product['category_id'] == $category['category_id']){echo "selected";}else{echo "";} ?> value="<?php echo $category['category_id'] ?>"><?php echo $category['category_name'] ?></option>
@@ -46,7 +46,7 @@
 
 							<div class="col-lg-3">
 								<label>Sub-Category</label>
-								<select class="form-control" name="subcategory_id" id="sub_category">
+								<select class="form-control" name="subcategory_id" id="sub_category" disabled>
 									<option value="<?php echo $product['subcategory_id'] ?>"><?php echo $product['sub_name'] ?></option>
 
 
@@ -56,9 +56,9 @@
 
 						<div class="row mt-3">
 
-							<div class="col-lg-4">
+							<div class="col-lg-2">
 								<label>Product Price</label>
-								<input type="number" step="0.1" class="form-control" name="product_price" placeholder="Product Price" value="<?php echo $product['product_price'] ?>">
+								<input type="number" step="0.1" class="form-control" name="product_price" placeholder="Product Price" value="<?php echo $product['product_price'] ?>" disabled>
 							</div>
 
 						</div>
@@ -67,32 +67,26 @@
 
 							<div class="col-lg-12">
 								<label>Description</label>
-								<textarea class="form-control" name="description" placeholder="Description"><?php echo $product['description'] ?></textarea>
+								<textarea class="form-control" name="description" placeholder="Description" disabled><?php echo $product['description'] ?></textarea>
 							</div>
 
 							<div class="col-lg-12">
 								<label>Notes</label>
-								<textarea class="form-control" name="notes" placeholder="Notes"><?php echo $product['notes'] ?></textarea>
+								<textarea class="form-control" name="notes" placeholder="Notes" disabled><?php echo $product['notes'] ?></textarea>
 							</div>
 
 
 							<div class="col-lg-12">
-								<label>Image</label>
-								<input type="file" class="form-control" name="userfile" placeholder="Product Name" id="image">
-								<br/><br>
 								<label id="current-label">Current Image</label>
 								<br>
 								<img id="current-img" class="img-fluid img-thumbnail shadow-sm" src="<?php echo base_url() . 'uploads/' . $product['image_url'] ?>">
-
 							</div>
-
-							<div class="col-lg-4" id="image-preview"></div>
 
 						</div>
 
 						<div class="row mt-5 mb-3">
 							<div class="col-lg-12">
-								<button type="submit" name="submit" id="save" class="btn btn-success float-left">Save Product</button>
+								<button type="submit" name="delete" id="delete" class="btn btn-danger float-left">Delete Product</button>
 							</div>
 						</div>
 
@@ -104,32 +98,3 @@
 </div>
 <?php echo form_close(); ?>
 
-<script>
-	$(document).ready(function () {
-		$('#category').change(function () {
-			var category_id = $(this).val();
-			$.ajax({
-				url: "<?php echo base_url(); ?>categories/fetch_sub_category",
-				method: "POST",
-				data: {category_id: category_id},
-				dataType: "text",
-				success: function (data) {
-					$('#sub_category').html(data);
-				}
-			});
-		});
-	});
-</script>
-
-<script>
-	// Image preview
-	$("#image").change(function () {
-		$('#current-img').hide();
-		$('#current-label').hide();
-		$("#image-preview").html("");
-		var total_file = document.getElementById("image").files.length;
-		for (var i = 0; i < total_file; i++) {
-			$("#image-preview").append("<img class='img-fluid img-thumbnail shadow-sm' src='" + URL.createObjectURL(event.target.files[i]) + "'>");
-		}
-	});
-</script>

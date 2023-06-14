@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /*********  ROUTES FOR AUTH.  *********/
 $route['auth/login'] = 'auth/login';
 $route['auth/logout'] = 'auth/logout';
-
+$route['auth/forgot'] = 'auth/forgot';
 
 $route['admin/users/register'] = 'users/register';
 $route['admin/users'] = 'users/index';
@@ -21,30 +21,35 @@ $route['admin/profile'] = 'users/profile';
 
 
 /*********  ROUTES FOR ADMIN  *********/
-$route['admin'] = 'admins/index';
-$route['admin/uploads/new'] = 'videouploads/create';
-$route['admin/uploads/edit/(:any)'] = 'videouploads/edit/$1';
-$route['admin/uploads/delete/(:any)'] = 'videouploads/delete/$1';
-$route['admin/uploads/(:any)'] = 'videouploads/view/$1';
-$route['admin/uploads'] = 'videouploads/index';
 
+//categories
 $route['admin/categories'] = 'categories/index';
 $route['admin/categories/new'] = 'categories/create';
 $route['admin/categories/edit/(:any)'] = 'categories/update/$1';
 $route['admin/categories/delete/(:any)'] = 'categories/delete/$1';
 
+//subcategories
+$route['admin/subcategories'] = 'subcategories/index';
+$route['admin/subcategories/new'] = 'subcategories/create';
+$route['admin/subcategories/edit/(:any)'] = 'subcategories/update/$1';
+$route['admin/subcategories/delete/(:any)'] = 'subcategories/delete/$1';
 
+//products
+$route['admin/products'] = 'products/index';
+$route['admin/products/new'] = 'products/create';
+$route['admin/products/edit/(:any)'] = 'products/edit/$1';
+$route['admin/products/delete/(:any)'] = 'products/delete/$1';
 
-/********* OPEN  ROUTES *********/
-$route['videos/all'] = 'pages/view';
-$route['videos/(:any)'] = 'videos/view/$1';
-$route['category/(:any)'] = 'categories/view_by_category/$1';
 
 
 //reports.
 $route['reports'] = 'reports/index';
 
 
+/*********  ROUTES FOR CUSTOMER  *********/
+$route['details/(:any)'] = 'pages/details/$1';
+$route['orders/view/(:any)'] = 'pages/order_confirmation/$1';
+$route['order/(:any)'] = 'pages/order/$1';
 
 //pages
 $route['(:any)'] = 'pages/view/$1';

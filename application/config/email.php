@@ -3,10 +3,12 @@
 $config['useragent']        = 'PHPMailer';              // Mail engine switcher: 'CodeIgniter' or 'PHPMailer'
 $config['protocol']         = 'smtp';                   // 'mail', 'sendmail', or 'smtp'
 $config['mailpath']         = '/usr/sbin/sendmail';
-$config['smtp_host']        = '192.168.2.8';
+//$config['smtp_host']        = '192.168.2.8';
+$config['smtp_host']        = 'DM5PR12MB2485.namprd12.prod.outlook.com';
+
 $config['smtp_auth']        = false;                     // Whether to use SMTP authentication, boolean TRUE/FALSE. If this option is omited or if it is NULL, then SMTP authentication is used when both $config['smtp_user'] and $config['smtp_pass'] are non-empty strings.
 $config['smtp_user']        = 'jgomez@martechmedical.com';
-$config['smtp_pass']        = 'joseLuis15!';
+$config['smtp_pass']        = 'joseLuis15';
 $config['smtp_port']        = 587;
 $config['smtp_timeout']     = 30;                       // (in seconds)
 $config['smtp_crypto']      = 'tls';                    // '' or 'tls' or 'ssl'
@@ -36,6 +38,7 @@ $config['dkim_identity']    = '';                       // DKIM Identity, usuall
 
 
 //only for martech & medcomp servers
+/*
 $config['smtp_conn_options'] = array(
 	'ssl' => array(
 		'verify_peer' => false,
@@ -43,3 +46,4 @@ $config['smtp_conn_options'] = array(
 		'allow_self_signed' => true
 	)
 );
+*/

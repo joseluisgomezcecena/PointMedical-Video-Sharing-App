@@ -11,10 +11,12 @@ class UserModel extends CI_Model{
 	{
 		$data = array(
 			'user_name'=>$this->input->post('user_name'),
-			'user_email'=>$this->input->post('user_email'),
-			'user_password'=>$encrypted_pwd,
+			'email'=>$this->input->post('email'),
+			'password'=>$encrypted_pwd,
+			'phone'=>$this->input->post('phone'),
+			'company'=>$this->input->post('company'),
+			'address'=>$this->input->post('address'),
 		);
-
 		return $this->db->insert('users', $data);
 	}
 
@@ -24,8 +26,12 @@ class UserModel extends CI_Model{
 	{
 		$data = array(
 			'user_name'=>$this->input->post('user_name'),
-			'user_email'=>$this->input->post('user_email'),
-			'user_password'=>$encrypted_pwd,
+			'email'=>$this->input->post('email'),
+			'password'=>$encrypted_pwd,
+			'phone'=>$this->input->post('phone'),
+			'company'=>$this->input->post('company'),
+			'address'=>$this->input->post('address'),
+			'staff'=>$this->input->post('staff'),
 		);
 
 		return $this->db->update('users', $data, array('user_id'=>$id));
@@ -33,27 +39,61 @@ class UserModel extends CI_Model{
 
 
 
-	public function login($username, $password)
+
+
+	public function login($email, $password)
 	{
-		$authdb = $this->load->database('authdb', TRUE);
 
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
 
-		$authdb->select('*');
-		$authdb->from('users');
-		$authdb->where('user_email', $username);
-		$query = $authdb->get();
-
-		$last_query = $authdb->last_query();
+		$last_query = $this->db->last_query();
 		print_r($last_query);
 
 		$result = $query->row_array();
 
-		if (!empty($result) && password_verify($password, $result['user_password'])) {
+		if (!empty($result) && password_verify($password, $result['password']))
+		{
 			return $result;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
+
+
+	public function forgot_password_check($email)
+	{
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		$result = $query->row_array();
+
+		if (!empty($result))
+		{
+			return $result;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+	public function update_password($encrypted_pwd, $id)
+	{
+		$data = array(
+			'password'=>$encrypted_pwd,
+		);
+
+		return $this->db->update('users', $data, array('user_id'=>$id));
+	}
+
 
 
 
@@ -101,7 +141,22 @@ class UserModel extends CI_Model{
 
 	public function check_email_exists($email)
 	{
-		$query = $this->db->get_where('users', array('user_email' => $email));
+		$query = $this->db->get_where('users', array('email' => $email));
+
+		if(empty($query->row_array()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+	public function check_phone_exists($phone)
+	{
+		$query = $this->db->get_where('users', array('phone' => $phone));
 
 		if(empty($query->row_array()))
 		{
@@ -145,11 +200,32 @@ class UserModel extends CI_Model{
 		//check if username exists with different id
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('user_email', $email);
+		$this->db->where('email', $email);
 		$this->db->where('user_id !=', $id);
 		$query = $this->db->get();
 
 
+
+		if(empty($query->row_array()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+	public function check_phone_exists_update($phone, $id)
+	{
+		//check if username exists with different id
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('phone', $phone);
+		$this->db->where('user_id !=', $id);
+		$query = $this->db->get();
 
 		if(empty($query->row_array()))
 		{

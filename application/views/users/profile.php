@@ -29,21 +29,40 @@
 						<div class="row">
 							<div class="col-lg-4">
 								<label>Username</label>
-								<input type="text" class="form-control" name="user_name" placeholder="User Name" value="<?php echo $user['user_name'] ?>">
+								<input type="text" class="form-control" name="user_name" placeholder="User Name" value="<?php echo $user['user_name']; ?>" >
 							</div>
+
+							<div class="col-lg-4">
+								<label>Company</label>
+								<input type="text" class="form-control" name="company" placeholder="Company Name." value="<?php echo $user['company']; ?>">
+							</div>
+
 							<div class="col-lg-4">
 								<label>E-Mail</label>
-								<input type="email" class="form-control" name="user_email" placeholder="Email" value="<?php echo $user['user_email'] ?>">
+								<input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $user['email']; ?>">
 							</div>
+						</div>
+						<div class="row mt-5">
 
 							<div class="col-lg-2">
 								<label>Password</label>
-								<input type="password" class="form-control" name="user_password" placeholder="Password">
+								<input type="password" class="form-control" name="password" placeholder="Password">
 							</div>
 							<div class="col-lg-2">
 								<label>Confirm Password</label>
-								<input type="password" class="form-control" name="user_password2" placeholder="Password">
+								<input type="password" class="form-control" name="password2" placeholder="Password">
 							</div>
+
+							<div class="col-lg-4">
+								<label>Phone</label>
+								<input type="text" class="form-control" name="phone" placeholder="User Phone" value="<?php echo $user['phone']; ?>">
+							</div>
+
+							<div class="col-lg-4">
+								<label>Address</label>
+								<input type="text" class="form-control" name="address" placeholder="Address" value="<?php echo $user['address']; ?>">
+							</div>
+
 
 						</div>
 

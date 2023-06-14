@@ -32,18 +32,34 @@
 								<label>Username</label>
 								<input type="text" class="form-control" name="user_name" placeholder="User Name">
 							</div>
+
+							<div class="col-lg-4">
+								<label>Company</label>
+								<input type="text" class="form-control" name="company" placeholder="Company Name.">
+							</div>
+
 							<div class="col-lg-4">
 								<label>E-Mail</label>
-								<input type="email" class="form-control" name="user_email" placeholder="Email">
+								<input type="email" class="form-control" name="email" placeholder="Email">
 							</div>
 
 							<div class="col-lg-2">
 								<label>Password</label>
-								<input type="password" class="form-control" name="user_password" placeholder="Password">
+								<input type="password" class="form-control" name="password" placeholder="Password">
 							</div>
 							<div class="col-lg-2">
 								<label>Confirm Password</label>
-								<input type="password" class="form-control" name="user_password2" placeholder="Password">
+								<input type="password" class="form-control" name="password2" placeholder="Password">
+							</div>
+
+							<div class="col-lg-4">
+								<label>Phone</label>
+								<input type="text" class="form-control" name="phone" placeholder="User Phone">
+							</div>
+
+							<div class="col-lg-4">
+								<label>Address</label>
+								<input type="text" class="form-control" name="address" placeholder="Address">
 							</div>
 
 						</div>

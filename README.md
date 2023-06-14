@@ -10,43 +10,27 @@
 
 
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="assets/1200px-Socket-io.svg.png" alt="Logo" width="80" height="80">
+    <img src="assets/avanti.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Point Medical Video Sharing Platform</h3>
+<h3 align="center">Purchase Order Manager</h3>
 
   <p align="center">
-    Video sharing application for Point Medical SOPs reference videos.
+    Application to manage the company's product catalog and to allow customers to place orders.
     <br />
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="#">View Demo</a>
     ·
-    <a href="mailto:jgomez@martechmedical.com">Report Bug</a>
+    <a href="mailto:joseluisgomezcecegna@gmail.com">Report Bug</a>
     ·
-    <a href="mailto:jgomez@martechmedical.com">Request Feature</a>
+    <a href="mailto:joseluisgomezcecegna@gmail.com">Request Feature</a>
   </p>
 </div>
 
@@ -85,8 +69,7 @@
 <!--
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 -->
-This is a video sharing platform for Point Medical SOPs reference videos. This application is built using Codeigniter 3, Node.js and MySQL.
-The application uses FFMPEG to convert the videos to compressed MP4 format using H.264 codec. The videos are then uploaded to the Local server and the video URL is stored in the database.  The application also uses Sessions for authentication and authorization.
+This is a product catalog management system and purchase order manager, to place an order client must be logged in,The application also uses Sessions for authentication and authorization.
 <!--
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
@@ -170,7 +153,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 -->
 ## Usage
--  For installation check the location of FFMPEG.
 -  Install all dependencies using NPM and Composer.
 <!-- ROADMAP
 ## Roadmap

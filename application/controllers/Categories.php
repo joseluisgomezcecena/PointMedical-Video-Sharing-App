@@ -41,13 +41,7 @@ class Categories extends MY_Controller
 
 	public function create()
 	{
-		//check login
-		/*
-		if(!$this->session->userdata('logged_in'))
-		{
-			redirect('users/login');
-		}
-		*/
+
 
 		$data['title'] = 'Create Category';
 		$data['categories'] = $this->CategoryModel->get_all_categories();
@@ -137,5 +131,20 @@ class Categories extends MY_Controller
 		}
 
 	}
+
+
+
+	public function fetch_sub_category()
+	{
+		if($this->input->post('category_id'))
+		{
+			$subcategories = $this->CategoryModel->fetch_subcategory($this->input->post('category_id'));
+			//echo json_encode($subcategories);
+			for ($i=0; $i < count($subcategories); $i++) {
+				echo '<option value="'.$subcategories[$i]['sub_id'].'">'.$subcategories[$i]['sub_name'].'</option>';
+			}
+		}
+	}
+
 
 }

@@ -24,17 +24,23 @@
 			<div style="min-height: 400px" class="card">
 				<div class="card-body">
 					<div class="text-center">
-						<img class="text-danger align-content-center" src="<?php echo base_url() ?>assets/images/logo/logopoint.png" alt="" width="150">
+						<img class="text-danger align-content-center" src="<?php echo base_url() ?>assets/avanti.png" alt="" width="150">
 					</div>
 					<h2 class="m-t-20 font-weight-bolder fw-bolder">Sign In</h2>
-					<p class="m-b-30">Enter your credentials to access the admin panel, here you'll be able to upload and edit content. </p>
+					<p class="m-b-30">
+						To make a purchase order or follow up on order status, you need to be logged in.
+						Enter your credentials to access your profile,
+					</p>
 
 					<?php echo form_open_multipart(base_url() . "auth/login")?>
 						<div class="form-group">
+
+							<input style="opacity: 0;" name="user_name" type="text"><br>
+
 							<label class="font-weight-semibold" for="userName">Email:</label>
 							<div class="input-affix">
 								<i class="prefix-icon anticon anticon-user"></i>
-								<input type="email" class="form-control" name="username" id="userName" placeholder="Your email">
+								<input type="email" class="form-control" name="email" id="userName" placeholder="Your email">
 							</div>
 						</div>
 						<div class="form-group">

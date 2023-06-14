@@ -1,39 +1,21 @@
 <?php
-class Categories extends CI_Controller
+class Subcategories extends CI_Controller
 {
-	public function view_by_category($id)
-	{
-
-		$limit = 10;
-
-		$data['title'] = "🎥 Point Medical | Reference Videos.";
-		$data['categories'] = $this->CategoryModel->get_videocategories();
-		$data['videos'] = $this->VideoModel->get_videos_by_category($id);
-		$data['recents'] = $this->VideoModel->get_recent($limit);
-
-		//load header, page & footer
-		$this->load->view('templates/main/header',$data);
-		$this->load->view('templates/main/topnav');
-		$this->load->view('templates/main/sidebar', $data);
-		$this->load->view('templates/main/wrapper');
-		$this->load->view('videos/category' , $data); //loading page and data
-		$this->load->view('templates/main/footer_wide');
-	}
-
 
 
 	public function index()
 	{
 
-		$data['title'] = 'Categories';
+		$data['title'] = 'Sub-Categories';
 
+		$data['subcategories'] = $this->SubCategoryModel->get_all_subcategories();
 		$data['categories'] = $this->CategoryModel->get_all_categories();
 
 		$this->load->view('templates/main/header',$data);
 		$this->load->view('templates/main/topnav');
 		$this->load->view('templates/main/sidebar', $data);
 		$this->load->view('templates/main/wrapper');
-		$this->load->view('categories/index', $data);
+		$this->load->view('subcategories/index', $data);
 		$this->load->view('templates/main/footer_wide');
 	}
 
@@ -41,18 +23,13 @@ class Categories extends CI_Controller
 
 	public function create()
 	{
-		//check login
-		/*
-		if(!$this->session->userdata('logged_in'))
-		{
-			redirect('users/login');
-		}
-		*/
 
 		$data['title'] = 'Create Category';
 		$data['categories'] = $this->CategoryModel->get_all_categories();
 
-		$this->form_validation->set_rules('category_name', 'Category Name', 'required');
+		$this->form_validation->set_rules('sub_name', 'Sub-Category Name', 'required');
+		$this->form_validation->set_rules('category_id', 'Parent Category Name', 'required');
+
 
 		if($this->form_validation->run() === FALSE)
 		{
@@ -60,17 +37,17 @@ class Categories extends CI_Controller
 			$this->load->view('templates/main/topnav');
 			$this->load->view('templates/main/sidebar', $data);
 			$this->load->view('templates/main/wrapper');
-			$this->load->view('categories/create', $data);
+			$this->load->view('subcategories/create', $data);
 			$this->load->view('templates/main/footer_wide');
 		}
 		else
 		{
-			$this->CategoryModel->create_category();
+			$this->SubCategoryModel->create_subcategory();
 
 			//set message
-			$this->session->set_flashdata('message', 'Your category has been created');
+			$this->session->set_flashdata('message', 'Your subcategory has been created');
 
-			redirect(base_url() . 'admin/categories/new');
+			redirect(base_url() . 'admin/subcategories/new');
 		}
 	}
 

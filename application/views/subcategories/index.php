@@ -17,25 +17,29 @@
 
 	<div class="col-lg-12">
 
-		<a href="<?php echo base_url() ?>admin/categories/new" class="btn btn-primary mb-5 btn-rounded"><i class="anticon anticon-plus-circle"></i> New Category</a>
+		<a href="<?php echo base_url() ?>admin/subcategories/new" class="btn btn-primary mb-5 btn-rounded"><i class="anticon anticon-plus-circle"></i> New Sub-Category</a>
 
 		<table id="data-table" class="table ">
 			<thead>
 			<tr>
-				<th>Category</th>
+				<th>Sub-Category</th>
+				<th>Parent Category</th>
 				<th>Options</th>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($categories as $category): ?>
+			<?php foreach ($subcategories as $subcategory): ?>
 				<tr>
 					<td>
-						<?php echo $category['category_name']; ?>
+						<?php echo $subcategory['sub_name']; ?>
+					</td>
+					<td>
+						<?php echo $subcategory['category_name']; ?>
 					</td>
 					<td>
 						<div class="float-right">
-							<a href="<?php echo base_url() ?>admin/categories/delete/<?php echo $category['category_id'] ?>" class="btn btn-danger"><i class="anticon anticon-delete"></i> Delete</a>
-							<a href="<?php echo base_url() ?>admin/categories/edit/<?php echo $category['category_id'] ?>" class="btn btn-success"><i class="anticon anticon-edit"></i> Edit</a>
+							<a href="<?php echo base_url() ?>admin/categories/delete/<?php echo $subcategory['category_id'] ?>" class="btn btn-danger"><i class="anticon anticon-delete"></i> Delete</a>
+							<a href="<?php echo base_url() ?>admin/categories/edit/<?php echo $subcategory['category_id'] ?>" class="btn btn-success"><i class="anticon anticon-edit"></i> Edit</a>
 						</div>
 					</td>
 

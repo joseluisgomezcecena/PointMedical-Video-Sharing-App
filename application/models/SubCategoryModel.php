@@ -1,5 +1,5 @@
 <?php
-class CategoryModel extends CI_Model
+class SubCategoryModel extends CI_Model
 {
 	public function __construct()
 	{
@@ -7,46 +7,66 @@ class CategoryModel extends CI_Model
 	}
 
 
-	public function get_all_categories()
+	public function get_all_subcategories()
 	{
-		$this->db->order_by('category_name');
-		$query = $this->db->get('category');
+		$this->db->order_by('sub_name');
+		$this->db->select('subcategories.*, categories.category_name');
+		$this->db->from('subcategories');
+		$this->db->join('categories', 'categories.category_id = subcategories.category_id');
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 
 
-	public function get_category($id)
+	public function get_subcategory($id)
 	{
-		$query = $this->db->get_where('category', array('category_id' => $id));
+		$this->db->select('subcategories.*, categories.category_name');
+		$this->db->from('subcategories');
+		$this->db->join('categories', 'categories.category_id = subcategories.category_id');
+		$query = $this->db->get_where('subcategories', array('sub_id' => $id));
 		return $query->row_array();
 	}
 
 
-	public function create_category()
+	public function get_subcategories_by_category($id)
 	{
-		$data = array(
-			'category_name' => $this->input->post('category_name'),
-		);
-
-		return $this->db->insert('category', $data);
+		$this->db->order_by('sub_name');
+		$this->db->select('subcategories.*, categories.category_name');
+		$this->db->from('subcategories');
+		$this->db->join('categories', 'categories.category_id = subcategories.category_id');
+		$query = $this->db->get_where('subcategories', array('subcategories.category_id' => $id));
+		return $query->result_array();
 	}
 
 
-	public function delete_category($id)
+	public function create_subcategory()
 	{
-		$this->db->where('category_id', $id);
-		$this->db->delete('category');
+		$data = array(
+			'sub_name' => $this->input->post('sub_name'),
+			'category_id' => $this->input->post('category_id'),
+		);
+
+		return $this->db->insert('subcategories', $data);
+	}
+
+
+	public function delete_subcategory($id)
+	{
+		$this->db->where('sub_id', $id);
+		$this->db->delete('subcategories');
 		return true;
 	}
 
-	public function update_category($id)
+
+	public function update_subcategory($id)
 	{
 		$data = array(
-			'category_name' => $this->input->post('category_name'),
+			'sub_name' => $this->input->post('sub_name'),
+			'category_id' => $this->input->post('category_id'),
 		);
 
-		$this->db->where('category_id', $id);
-		return $this->db->update('category', $data);
+		$this->db->where('sub_id', $id);
+		return $this->db->update('subcategories', $data);
 	}
 
 }

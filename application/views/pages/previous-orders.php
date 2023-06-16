@@ -120,6 +120,11 @@
 			<div class="flex flex-col">
 				<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
+						<h1 class="text-3xl font-bold mb-6 -mt-4">Previous Orders</h1>
+						<p class="mb-10">Here you can view your previous orders and check on their status.</p>
+
+
 						<?php if (isset($this->session->userdata['logged_in'])):?>
 							<!--cart-->
 							<div id="my-order" class="relative overflow-x-auto">
@@ -130,6 +135,7 @@
 										<th scope="col" class="px-6 py-3 ">Client</th>
 										<th scope="col" class="px-6 py-3 ">Company</th>
 										<th scope="col" class="px-6 py-3">Total</th>
+										<th scope="col" class="px-6 py-3">Status</th>
 										<th scope="col" class="px-6 py-3">Date</th>
 										<th scope="col" class="px-6 py-3 rounded-r-lg">Action</th>
 									</tr>
@@ -142,6 +148,19 @@
 											<td><?php echo $item['company']; ?></td>
 											<td>
 												<?php echo $item['total']; ?>
+											</td>
+											<td>
+												<?php
+												 if ($item['status'] == 0){
+													echo "Pending";
+												 }
+												 elseif ($item['status'] == 1){
+													 echo "Processing";
+												 }
+												 elseif ($item['status'] == 2){
+													 echo "Shipped";
+												 }
+												?>
 											</td>
 											<td><?php echo $item['created_at']; ?></td>
 											<td>

@@ -12,15 +12,25 @@ $route['auth/login'] = 'auth/login';
 $route['auth/logout'] = 'auth/logout';
 $route['auth/forgot'] = 'auth/forgot';
 
+
+/*********  ROUTES FOR ADMIN  *********/
+//dashboard
+$route['admin'] = 'admins/index';
+
+//orders
+$route['admin/orders'] = 'adminorders/index';
+$route['admin/order/details/(:any)'] = 'adminorders/details/$1';
+$route['admin/order/cancel/(:any)'] = 'adminorders/cancel/$1';
+$route['admin/cancelled-orders'] = 'adminorders/cancelledorders';
+$route['admin/order/delete/(:any)'] = 'adminorders/delete/$1';
+
+//users, profile and user management
 $route['admin/users/register'] = 'users/register';
 $route['admin/users'] = 'users/index';
 $route['admin/users/edit/(:any)'] = 'users/edit/$1';
 $route['admin/users/delete/(:any)'] = 'users/delete/$1';
-
 $route['admin/profile'] = 'users/profile';
 
-
-/*********  ROUTES FOR ADMIN  *********/
 
 //categories
 $route['admin/categories'] = 'categories/index';
@@ -50,6 +60,7 @@ $route['reports'] = 'reports/index';
 $route['details/(:any)'] = 'pages/details/$1';
 $route['orders/view/(:any)'] = 'pages/order_confirmation/$1';
 $route['order/(:any)'] = 'pages/order/$1';
+$route['previous-orders'] = 'pages/previous_orders';
 
 //pages
 $route['(:any)'] = 'pages/view/$1';

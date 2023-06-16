@@ -3,9 +3,41 @@
 	<div class="side-nav-inner">
 		<ul class="side-nav-menu scrollable">
 
+			<li class="nav-item dropdown open" >
+				<a class="dropdown-toggle" href="<?php echo base_url() ?>admin">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-dashboard"></i>
+                                </span>
+					<span class="title">Start</span>
+				</a>
+			</li>
+
+
+
+			<!--Orders-->
+			<li class="nav-item dropdown" >
+				<a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-file"></i>
+                                </span>
+					<span class="title">Orders</span>
+					<span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="<?php echo base_url() ?>admin/orders">Manage Active Orders</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url() ?>admin/cancelled-orders">Manage Cancelled Orders</a>
+					</li>
+				</ul>
+			</li>
+
 
 			<!--Products-->
-			<li class="nav-item dropdown open " >
+			<li class="nav-item dropdown " >
 				<a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
                                     <i class="anticon anticon-medicine-box"></i>

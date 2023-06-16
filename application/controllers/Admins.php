@@ -3,31 +3,18 @@ class Admins extends CI_Controller
 {
 	public function index()
 	{
-		$data['title'] = '💡 Ideas Martech | Admin Panel.';
-		$data['count'] = $this->VideoModel->count_videos();
-		$data['categories'] = $this->CategoryModel->get_videocategories();
+		$data['title'] = 'Avanti | Admin Panel.';
+		$data['recents'] = $this->OrderModel->get_orders(5);
+
+		$data['orders'] = $this->OrderModel->get_orders();//added to display orders on main page
 
 
-		/*****Charts data*****/
-		$query = $this->db->query("		
-		SELECT COUNT(view_id) as count,MONTHNAME(created_at) as month_name 
-		FROM views 
-		WHERE YEAR(created_at) = '" . date('Y') . "'
-      	GROUP BY YEAR(created_at),MONTH(created_at)
-		");
-
-		$record = $query->result();
-
-		foreach($record as $row) {
-			$data['label'][] = $row->month_name;
-			$data['data'][] = (int) $row->count;
-		}
-
-		$data['chart_data'] = json_encode($data);
+		$data['chart_data'] = $this->OrderModel->get_orders_chart();
+		$data['chart_data'] = json_encode($data['chart_data']);
+		$data['category_data'] = $this->OrderModel->getCategoryData();
 
 
-
-			//load header, page & footer
+		//load header, page & footer
 		$this->load->view('templates/main/header',$data);
 		$this->load->view('templates/main/topnav');
 		$this->load->view('templates/main/sidebar');

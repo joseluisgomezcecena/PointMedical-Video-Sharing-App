@@ -118,7 +118,7 @@
 	<div class="flex max-w-screen-xl px-4 py-4 mx-auto lg:gap-8 xl:gap-0 lg:py-8">
 		<div  class="w-full">
 
-			<h1 style="margin-top: -25px;" class="text-3xl font-bold mb-4">Your Order: <span class="text-lime-500"><?php echo $order['po_id'] ?></span>.</h1>
+			<h1 style="margin-top: -25px;" class="text-3xl font-bold mb-4">Your Order: <span class="text-lime-500"><?php echo "PO-" . $order['po_id'] ?></span>.</h1>
 			<p class="mb-5 text-gray-500">
 				Thank you for your order. Your order has been placed and will be processed shortly. You will be receiving an email shortly with confirmation of your order.
 			</p>

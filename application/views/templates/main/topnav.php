@@ -5,11 +5,11 @@
 		<div class="header">
 			<div class="logo logo-dark">
 				<a href="<?php echo base_url() ?>">
-					<!--
+
 					<span style="font-size: 25px; margin-top: -25px;" class=""></span>
 					<img style="margin-top: 10px;" src="<?php echo base_url() ?>assets/avanti.png" alt="Logo" width="170">
-					<img style="text-align: center; padding-left: 22px;" class="logo-fold" src="<?php echo base_url() ?>assets/avanti.png" alt="Logo">
-					-->
+					<img style="text-align: center; padding-left: 5px; margin-top: 10px;" class="logo-fold" width="75" src="<?php echo base_url() ?>assets/avanti.png" alt="Logo">
+
 				</a>
 			</div>
 			<div class="logo logo-white">
@@ -210,13 +210,6 @@
 							<?php endif; ?>
 						</div>
 					</li>
-
-					<li>
-						<a href="<?php echo base_url() . "admin/uploads/new" ?>"  >
-							+<i class="anticon anticon-video-camera"></i>
-						</a>
-					</li>
-
 				</ul>
 			</div>
 		</div>

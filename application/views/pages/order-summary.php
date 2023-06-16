@@ -129,7 +129,7 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Product added to cart!'+ product_id + ' quantity ' + quantity);
+					//alert('Product added to cart!'+ product_id + ' quantity ' + quantity);
 					refreshCartTable();
 					countCartItems();
 					mySnack()
@@ -157,7 +157,7 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Cart updated successfully!');
+					//alert('Cart updated successfully!');
 					refreshCartTable(); // Refresh the cart table
 					countCartItems();
 					mySnack();
@@ -182,7 +182,7 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Product removed from cart!');
+					//alert('Product removed from cart!');
 					refreshCartTable(); // Refresh the cart table
 					countCartItems();
 					mySnack();

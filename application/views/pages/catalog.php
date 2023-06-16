@@ -129,7 +129,8 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Product added to cart!'+ product_id + ' quantity ' + quantity);
+					//alert('Product added to cart!'+ product_id + ' quantity ' + quantity);
+					mySnack();
 					refreshCartTable();
 					countCartItems();
 				},
@@ -156,7 +157,8 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Cart updated successfully!');
+					//alert('Cart updated successfully!');
+					mySnack();
 					refreshCartTable(); // Refresh the cart table
 					countCartItems();
 				},
@@ -180,7 +182,8 @@
 				},
 				success: function(response) {
 					console.log(response);
-					alert('Product removed from cart!');
+					//alert('Product removed from cart!');
+					mySnack();
 					refreshCartTable(); // Refresh the cart table
 					countCartItems();
 				},
@@ -453,6 +456,27 @@
 
 
 <?php # print_r($this->cart->contents()); ?>
+
+
+
+<div id="snackbar" class="top-5 right-5 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+	<div class="ml-3 text-sm font-normal">Order Updated.</div>
+</div>
+
+<script>
+	function mySnack() {
+		// Get the snackbar DIV
+		var x = document.getElementById("snackbar");
+
+		// Add the "show" class to DIV
+		x.className = "show";
+
+		// After 3 seconds, remove the show class from DIV
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+</script>
+
+
 
 <script>
 	//hide div with id my-order.
